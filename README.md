@@ -23,7 +23,7 @@ the `LICENSE` file or visit [https://opensource.org/licenses/MIT](https://openso
 2. Your new subscriptions will be displayed upon completion of your purchase, for that,
    visit [https://heartbeat.it-for-you.com/subscriptions](https://heartbeat.it-for-you.com/subscriptions). To
    authenticate connection requests, enter the site URL implementing the Heartbeat.
-3. Kickstart your software project by referring to the [demo implementation](#demo-implementation) below.
+3. Kickstart your software project by referring to the [Demo Implementation](#demo-implementation) below.
 
 ## Subscription Plans
 
