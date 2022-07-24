@@ -18,11 +18,27 @@ the `LICENSE` file or visit [https://opensource.org/licenses/MIT](https://openso
 ## Getting Started
 
 1. Select a subscription plan that fits your very needs. Free plans are available for testing. Get subscription plans
-   and manage your account, go to [https://shop.it-for-you.com](https://shop.it-for-you.com).
+   and manage your account, go to [https://shop.it-for-you.com](https://shop.it-for-you.com). For more information, go
+   to [Subscription Plans](#subscription-plans).
 2. Your new subscriptions will be displayed upon completion of your purchase, for that,
    visit [https://heartbeat.it-for-you.com/subscriptions](https://heartbeat.it-for-you.com/subscriptions). To
    authenticate connection requests, enter the site URL implementing the Heartbeat.
-3. Kickstart your software project by referring to the demo implementation below.
+3. Kickstart your software project by referring to the [demo implementation](#demo-implementation) below.
+
+## Subscription Plans
+
+Different subscription plans offer a wide range of application possibilities. Plans differ in a few selected parameters.
+
+1. Frequency [Min. Seconds] represents the smallest heartbeat interval in seconds that the plan allows for. A value of
+   10 means, that the WebSocket API sends a heartbeat every ten seconds. The heartbeat, in particular, is a string
+   representing the current timestamp (UTC, Unix epoch format, seconds since 01/01/1970).
+2. Connections [Max. Users] represent the number of maximum allowable simultaneous connections from the domain assigned
+   to the subscription plan.
+3. Timeout [Max. Minutes] represents the time in minutes after which the WebSocket server automatically disconnects
+   incoming connections from the domain that is associated with the respective subscription plan.
+
+When implementing the WebSocket client, make sure to only set the parameters to the permissible limit according to the
+subscription plan. Impermissible values will automatically be reset to the maximum permissible values.
 
 ## Demo Implementation
 
