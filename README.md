@@ -9,8 +9,7 @@ which is a service to allow for scheduling of processes and non-throttled backgr
 clientside browser in any web-based software project.
 
 Visit the shop ([https://shop.it-for-you.com](https://shop.it-for-you.com)) to find and select the plan that fits your
-needs. Free plans are available
-for testing purposes.
+needs. Free plans are available for testing purposes.
 
 The contents of this repository are licensed under the MIT software license. For more information, please refer to
 the `LICENSE` file or visit [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT).
@@ -47,27 +46,37 @@ subscription plan. Impermissible values will automatically be reset to the maxim
 ```javascript
 // Heart. Beat. by IT for you
 // WebSocket Connection
-window.addEventListener('load', () => {
-    // Use ".../10" for the interval of 10 seconds
-    // Use the "60" code max connection duration in seconds
-    let webSocket = new WebSocket("ws://127.0.0.1/interval/10", "60");
-    // TODO: replace localhost with actual server IP, apply to demo js file and readme
+function buildWebSocketConnection() {
+   // Use ".../10" for the interval of 10 seconds
+   // Use the "60" code max connection duration in seconds
+   let webSocket = new WebSocket("ws://127.0.0.1/interval/10", "60");
 
-    // WebSocket Event Handlers
-    webSocket.onopen = function () {
-        console.log('WebSocket connection established successfully.');
-    }
-    webSocket.onerror = function (event) {
-        console.log("Error: " + event.data);
-    }
-    webSocket.onmessage = function (event) {
-        /*** Your code here. ***/
-        // This code will be executed repetitively as set with the interval.
-        console.log(event.data);
-    }
-    webSocket.onclose = function () {
-        console.log("WebSocket connection closed.");
-    }
+   // WebSocket Event Handlers
+   webSocket.onopen = function () {
+      console.log('WebSocket connection established successfully.');
+   }
+   webSocket.onerror = function () {
+      console.log("Error.");
+   }
+   webSocket.onmessage = function (event) {
+      // Your code here.
+      // This code will be executed repetitively as set with the interval.
+      console.log(event.data);
+   }
+   webSocket.onclose = function (event) {
+      console.log("WebSocket connection closed with status code " + event.code);
+      console.log("Reason being: " + event.reason);
+
+      // Re-open the connection
+      if (event.code !== 1006 && event.code !== 1008) {
+         console.log("Re-opening connection...");
+         buildWebSocketConnection();
+      }
+   }
+}
+
+window.addEventListener('load', () => {
+   buildWebSocketConnection();
 });
 ```
 
